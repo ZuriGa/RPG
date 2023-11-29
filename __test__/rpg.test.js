@@ -1,4 +1,4 @@
-import { createCharacter, calculateDamage } from "../src/rpg.js";
+import { createCharacter, calculateDamage, combat } from "../src/rpg.js";
 
 describe('createCharacter', () => {
 
@@ -12,6 +12,13 @@ describe('createCharacter', () => {
         const defender = createCharacter('Defender', 100, 15, 10);
         const damage = calculateDamage(attacker, defender);
         expect(damage).toBe(10);
+    });
+
+    test('It should correctly use combat function to inflict damage on the defender', () => {
+        const attacker = createCharacter('Attacker', 100, 20, 15);
+        const defender = createCharacter('Defender', 100, 15, 10);
+        const updateDefender = combat(attacker, defender);
+        expect(updateDefender.health).toBe(90);
     });
 })
 

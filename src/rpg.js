@@ -9,3 +9,9 @@ export const calculateDamage = (attacker, defender) => {
     const damage = Math.max(0, attacker.attack - defender.defense);
     return damage;
 };
+
+export const combat = (attacker, defender) => {
+    const damage = calculateDamage(attacker, defender);
+    const updateDefenderHealth = Math.max(0, defender.health - damage);
+    return {...defender, health: updateDefenderHealth};
+};
