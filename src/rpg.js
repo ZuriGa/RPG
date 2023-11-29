@@ -15,3 +15,11 @@ export const combat = (attacker, defender) => {
     const updateDefenderHealth = Math.max(0, defender.health - damage);
     return {...defender, health: updateDefenderHealth};
 };
+
+export const levelUp = (character) => {
+    const newAttack = character.attack + 5;
+    const newDefense = character.defense + 3;
+    return {...character, health: character.health + 10, attack: newAttack, defense: newDefense};
+
+
+};

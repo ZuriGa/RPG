@@ -1,4 +1,4 @@
-import { createCharacter, calculateDamage, combat } from "../src/rpg.js";
+import { createCharacter, calculateDamage, combat, levelUp } from "../src/rpg.js";
 
 describe('createCharacter', () => {
 
@@ -20,5 +20,13 @@ describe('createCharacter', () => {
         const updateDefender = combat(attacker, defender);
         expect(updateDefender.health).toBe(90);
     });
-})
+
+    test('It should correctly use levelUp function to increase character stats', () => {
+        const character = createCharacter ('Wade Watts', 100, 20, 15);
+        const levelUpCharacter = levelUp(character);
+        expect(levelUpCharacter.attack).toBe(25);
+        expect(levelUpCharacter.defense).toBe(18);
+        expect(levelUpCharacter.health).toBe(110);
+    });
+});
 
