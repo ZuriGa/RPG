@@ -1,4 +1,4 @@
-import { createCharacter, calculateDamage, combat, levelUp } from "../src/rpg.js";
+import { createCharacter, calculateDamage, combat, levelUp, createWizard, createWarrior } from "../src/rpg.js";
 
 describe('createCharacter', () => {
 
@@ -27,6 +27,16 @@ describe('createCharacter', () => {
         expect(levelUpCharacter.attack).toBe(25);
         expect(levelUpCharacter.defense).toBe(18);
         expect(levelUpCharacter.health).toBe(110);
+    });
+
+    test('createWizard should create a wizard character with special powers', () => {
+        const wizard = createWizard('Art3mis');
+        expect(wizard).toEqual({name: 'Art3mis', health: 110, attack: 35, defense: 25, spell: 'Lightning'});
+    });
+
+    test('createWarrior should create a warrior character with special powers', () => {
+        const warrior = createWarrior('Tyra');
+        expect(warrior).toEqual({name: 'Tyra', health:100, attack: 25, defense: 20, weapon: 'Sword'});
     });
 });
 

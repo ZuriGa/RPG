@@ -10,6 +10,16 @@ export const calculateDamage = (attacker, defender) => {
     return damage;
 };
 
+export const createWizard = (name) => {
+    const baseStats = createCharacter(name, 110, 35, 25);
+    return {...baseStats, spell: 'Lightning'};
+};
+
+export const createWarrior = (name) => {
+    const baseStats = createCharacter(name, 100, 25, 20);
+    return {...baseStats, weapon: 'Sword'};
+};
+
 export const combat = (attacker, defender) => {
     const damage = calculateDamage(attacker, defender);
     const updateDefenderHealth = Math.max(0, defender.health - damage);
