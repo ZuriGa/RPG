@@ -1,4 +1,4 @@
-import { createCharacter } from "../src/rpg.js";
+import { createCharacter, calculateDamage } from "../src/rpg.js";
 
 describe('createCharacter', () => {
 
@@ -7,11 +7,11 @@ describe('createCharacter', () => {
         expect(character).toEqual({ name: 'Wade Watts', health: 100, attack: 20, defense: 15});
     });
 
-    // test('calculateDamage should calculate damage correctly', () => {
-    //     const attacker = createCharacter('Attacker', 100, 30, 10);
-    //     const defender = createCharacter('Defender', 100, 15, 5);
-    //     const damage = calculateDamage(attacker, defender);
-    //     expect(damage).toBe(20);
-    // });
+    test('calculateDamage should calculate damage correctly', () => {
+        const attacker = createCharacter('Attacker', 100, 20, 15);
+        const defender = createCharacter('Defender', 100, 15, 10);
+        const damage = calculateDamage(attacker, defender);
+        expect(damage).toBe(10);
+    });
 })
 
