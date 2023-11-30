@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG game</title>
+</head>
+
+<body>
+    <div id="character-form">
+        <label for="characterName">Character Name:</label>
+        <input type="text" id="characterName" required>
+        <label for="characterType">Character Type:</label>
+        <select id="characterType">
+            <option value="wizard">Wizard</option>
+            <option value="warrior">Warrior</option>
+        </select>
+        <button onclick="createCharacter()">Create Character</button>
+    </div>
+
+    <div id="character-info">
+        <h2>Character Info</h2>
+        <p id="characterDetails"></p>
+        <button onclick="combat()">Combat</button>
+        <button onclick="levelUp()">Level Up</button>
+    </div>
+
+</body>
+
+</html>
