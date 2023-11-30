@@ -2,9 +2,9 @@ import { createCharacter, calculateDamage, combat, levelUp, createWizard, create
 
 describe('createCharacter', () => {
 
-    test('It should create a character object with name, health, attack and defense', () => {
+    test('It should create a character object with name, health, attack, defense and level 1', () => {
         const character = createCharacter ('Wade Watts', 100, 20, 15);
-        expect(character).toEqual({ name: 'Wade Watts', health: 100, attack: 20, defense: 15});
+        expect(character).toEqual({ name: 'Wade Watts', health: 100, attack: 20, defense: 15, level: 1});
     });
 
     test('calculateDamage should calculate damage correctly', () => {
@@ -31,12 +31,32 @@ describe('createCharacter', () => {
 
     test('createWizard should create a wizard character with special powers', () => {
         const wizard = createWizard('Art3mis');
-        expect(wizard).toEqual({name: 'Art3mis', health: 110, attack: 35, defense: 25, spell: 'Lightning'});
+        expect(wizard).toEqual({name: 'Art3mis', health: 110, attack: 35, defense: 25, spell: 'Lightning', level: 2});
     });
 
     test('createWarrior should create a warrior character with special powers', () => {
         const warrior = createWarrior('Tyra');
-        expect(warrior).toEqual({name: 'Tyra', health:100, attack: 25, defense: 20, weapon: 'Sword'});
+        expect(warrior).toEqual({name: 'Tyra', health:100, attack: 25, defense: 20, weapon: 'Sword', level: 2});
+    });
+
+    test('levelUp should increase characters stats after winning battle', () => {
+        const character = createCharacter ('Wade Watts', 100, 20, 15);
+        const levelUpCharacter = levelUp(character);
+        expect(levelUpCharacter).toEqual({name: 'Wade Watts', health: 110, attack: 25, defense: 18, level: 2});
+    });
+
+    test('calculateDamage should consider wizard spell in combat', () => {
+        const wizard = createWizard('Art3mis');
+        const warrior = createWarrior('Parzival');
+        const damage = calculateDamage(wizard, warrior);
+        expect(damage).toBe(25);
+    });
+
+    test('calculateDamage should consider warrior weapon in combat', () => {
+        const wizard = createWizard('Art3mis');
+        const warrior = createWarrior('Parzival');
+        const damage = calculateDamage(warrior, wizard);
+        expect(damage).toBe(5);
     });
 });
 
