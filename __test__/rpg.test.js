@@ -49,7 +49,7 @@ describe('createCharacter', () => {
         const wizard = createWizard('Art3mis');
         const warrior = createWarrior('Parzival');
         const damage = calculateDamage(wizard, warrior);
-        expect(damage).toBe(25);
+        expect(damage).toBe(35 - 10);
     });
 
     test('calculateDamage should consider warrior weapon in combat', () => {
@@ -57,6 +57,23 @@ describe('createCharacter', () => {
         const warrior = createWarrior('Parzival');
         const damage = calculateDamage(warrior, wizard);
         expect(damage).toBe(5);
+    });
+
+    test('combat should handle defender health if it drops to zero', () => {
+        const attacker = createCharacter('Attacker', 100, 20, 15);
+        const defender = createCharacter('Defender', 10, 15, 10);
+        const damage = calculateDamage(attacker, defender);
+        const updateDefender = combat(attacker, defender);
+        expect(updateDefender.health).toBe(0);
+    });
+
+    test('combat should handle defender surviving the attack', () => {
+        const attacker = createCharacter('Attacker', 100, 20, 15);
+        const defender = createCharacter('Defender', 100, 5, 10);
+        const damage = calculateDamage(attacker, defender);
+        const updateDefender = combat(attacker, defender);
+        expect(updateDefender.health).toBeGreaterThan(0);
+        expect(updateDefender.health).toBeLessThan(defender.health);
     });
 });
 

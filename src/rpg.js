@@ -56,6 +56,13 @@ export const createWarrior = (name) => {
 export const combat = (attacker, defender) => {
     const damage = calculateDamage(attacker, defender);
     const updateDefenderHealth = Math.max(0, defender.health - damage);
+
+    if (updateDefenderHealth <= 0) {
+        return {
+            ...defender, 
+            health: 0,
+        }
+    }
     return {
         ...defender, 
         health: updateDefenderHealth,
